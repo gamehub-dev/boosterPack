@@ -25,13 +25,10 @@ const width = window.innerWidth; // the width of the document
 const interval = setInterval; // create an interval
 const doc = document;
 let rand;
-function random(){ // generate a random number
-rand = Math.floor(Math.random() * ran.max) + ran.min
+function random(max, min){
+    rand = Math.floor(Math.random() * (max - min + 1)) + min
 }
-// control the maximum or minimum random number output
-// by changing ran.max | e.g. ran.max = 500; or, ran.min = 10;
-// after settings maximum and minimum, call random(), then access random number with the variable 'rand'
-
+// generate random number and control the maximum and minimum by typing 'random(1 // min, 10 // max)'
 
 
 // delete if you are not using ctx movement, remember to delete 'player()' from the animation frame

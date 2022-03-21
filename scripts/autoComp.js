@@ -1,30 +1,44 @@
-// classes
-class Player{
-    constructor(x, y, w, h, c){
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-        this.c = c;
-    }
-}
-let player = new Player(100, 100, 50, 50, "black")
+// To start off
+// link 'autoEngine.js' through your html file, make sure it is the first script that loads!!
+// there will be instructions on how to use it next to whatever interest you.
+// 
+// you can also browse around this file to see its capabilities!
+// hope this helps.
 
 
-class CalcDistanceX{
-    constructor(x, y){
-        this.x = x;
-        this.y = y;
-    }
-}
-let pointAx = new CalcDistanceX(0, 0)
-let pointBx = new CalcDistanceX(0, 0)
-let pointAy = new CalcDistanceX(0, 0)
-let pointBy = new CalcDistanceX(0, 0)
 
-// end of classes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // auto create canvas with 'canvas' as tag
+// if not using canvas, removeCanvas = true
 canv = document.createElement('canvas')
 canv.id = 'canvas'
 document.body.appendChild(canv)
@@ -38,7 +52,7 @@ const ct = console.trace // trace something
 const listen = addEventListener; // listen for an event
 const canvas = document.getElementById('canvas'); // for ctx
 const ctx = canvas.getContext('2d'); // for ctx
-const bgc = document.body.style.backgroundColor; // change document background colour
+let bgc = 'white'; // change document background colour
 const timeout = setTimeout; // create a timeout for an amount of time
 const height = window.innerHeight; // the height of the document
 const width = window.innerWidth; // the width of the document
@@ -71,6 +85,33 @@ let calcDist = false; //to calculate the DistanceX between point A and B, set 'p
 let DistanceX;
 let DistanceY;
 // end
+
+// classes
+class Player{
+    constructor(x, y, w, h, c){
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.c = c;
+    }
+}
+let player = new Player(100, 100, 50, 50, "black")
+
+
+class CalcDistanceX{
+    constructor(x, y){
+        this.x = x;
+        this.y = y;
+    }
+}
+let pointAx = new CalcDistanceX(0, 0)
+let pointBx = new CalcDistanceX(0, 0)
+let pointAy = new CalcDistanceX(0, 0)
+let pointBy = new CalcDistanceX(0, 0)
+
+// end of classes
+
 
 // how to use:
 // 1) create function inside your main.js.
@@ -130,7 +171,7 @@ setInterval(function checkOverflowTrueOfFalse() {
     if (hideOverflowY == false && document.body.style.overflow == false){
         document.body.style.overflowY = ''
     }
-},500)
+},50)
 interval(function SetDocumentTitle(){
     document.title = title
 },50)
@@ -154,7 +195,9 @@ interval(function calculateDistance(){
         console.log("DistanceX From 'pointAx.x' (" + pointAx.x + ")" + " to 'pointBx.x' (" + pointBx.x + ") is: " + DistanceX + "px")
     }
 })
-
+interval(function setBackgroundColor(){
+    doc.body.style.backgroundColor = bgc   
+})
 canvas.width = width;
 canvas.height = height;
 cl("autoEngine.js Loaded Succesfully")

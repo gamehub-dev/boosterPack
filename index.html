@@ -20,6 +20,13 @@
                 .downloadButtonStyle:hover{
                     background-color: rgb(143, 212, 40);
                 }
+
+                .aboutBox{
+                background-color: rgb(85, 84, 84);
+                width: 330px;
+                height: 350px;
+                position: absolute; top: 200px;
+                }
             </style>
                             <body>
                                 <p>To download <b>'autoEngine.js'</b>, either download it through <b><a href="https://github.com/gamehub-dev/boosterPack">github</a></b>, or download it here:</p>
@@ -37,7 +44,32 @@
         <p>- Calcualte the distance between objects</p>
         <p>- <u>To find out more, download and browse through the .js file!</u></p>
         </div>
+
+                <div class="aboutBox" id="aboutBox" style="position: absolute; left: px;"></div>
+
+
+                <p id="p1" style="position: absolute; top: 200px; left: 100px">About These Games:</p>
+                <p id="p2" style="position: absolute; top: 230px; left: 20px">These games are purely just for fun and-</p>
+                <p id="p3" style="position: absolute; top: 250px; left: 20px">arent intended to be enjoyable. This is-</p>
+                <p id="p4" style="position: absolute; top: 270px; left: 20px">mainly just me messin around.</p>
+                <u id="p5" style="position: absolute; top: 420px; left: 20px">Version Info</u>
+                <b id="p6" style="position: absolute; top: 440px; left: 20px">Version 1.1.0</b>
+                <p id="p7" style="position: absolute; top: 460px; left: 20px">to check YOUR engine version, type:</p>
+                <p id="p8" style="position: absolute; top: 480px; left: 20px">'EngineVersion()' In the console</p>
 </body>
+
+<script>
+    aboutBox.style.left = window.innerWidth - 360 + 'px'
+    p1.style.left = window.innerWidth - 270 + 'px'
+    p2.style.left = window.innerWidth - 350 + 'px'
+    p3.style.left = window.innerWidth - 350 + 'px'
+    p4.style.left = window.innerWidth - 350 + 'px'
+    p5.style.left = window.innerWidth - 350 + 'px'
+    p6.style.left = window.innerWidth - 350 + 'px'
+    p7.style.left = window.innerWidth - 350 + 'px'
+    p8.style.left = window.innerWidth - 350 + 'px'
+    
+</script>
 <script src="scripts/autoComp.js"></script>
 <script src="scripts/main.js"></script>
 </html>

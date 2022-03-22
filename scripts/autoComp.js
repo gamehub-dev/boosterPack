@@ -6,6 +6,7 @@
 // hope this helps.
 
 
+// to view engine version, type 'EngineVersion()' in the console.
 
 
 
@@ -33,9 +34,29 @@
 
 
 
+// classes
+class Player{
+    constructor(x, y, w, h, c){
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.c = c;
+    }
+}
+let player = new Player(100, 100, 50, 50, "black")
 
 
+class CalcDistanceX{
+    constructor(x, y){
+        this.x = x;
+        this.y = y;
+    }
+}
+let pointA = new CalcDistanceX(0, 0)
+let pointB = new CalcDistanceX(0, 0)
 
+// end of classes
 
 // auto create canvas with 'canvas' as tag
 // if not using canvas, removeCanvas = true
@@ -72,13 +93,32 @@ let mouseX = 0; // Access the mouseX position
 let mouseY = 0; // Access the mouseY position
 let title = document.title; // change variable value to change document title
 let removeCanvas = false; // if true, then the automatic canvas creation will not happen on startUp. Note: value cannot be reversed 
-let calcDist = false; //to calculate the DistanceX between point A and B, set 'pointAx.Y' to point A 'Y', then-
-// 'pointBx.Y' to point B 'Y'.
+let calcDist = false; // to calculate the DistanceX between point A and B, you must first set 'calcDist = true'-
+// then, set 'pointAx.x' to point A 'X', and 'pointBx.x' to point B 'X'.
 // then use 'DistanceX' (variable) to see the DistanceX between point A and point B.
-
 //to calculate the DistanceY between point A and B, set 'pointAy.y' to your point A 'Y', then-
 // 'pointBy.y' to your point B 'Y'.
 // then use 'DistanceY' (variable) to see the DistanceY between point A and point B.
+// e.g:
+// pointA.x = 20;
+// pointB.x = 100; 
+// calcDist = true;
+// output would be 80px apart from each other on the X Axis
+
+// e.g.
+// pointA.y = 50;
+// pointB.y = 200;
+// calcDist = true;
+// calcDist = true;
+// output would be 150px apart from each other on the Y Axis
+let borderCollision = false;
+
+// How to draw a player
+// 1) create function inside your main.js.
+// 2) type 'requestAnimationFrame('Name of your function')', or 'anim('Name of function')'.
+// 3) then type 'drawPlayer' inside that function.
+// 4) Lastly, remember to call your function!
+
 
 
 // private variables (not to be changed or used) 
@@ -86,32 +126,20 @@ let DistanceX;
 let DistanceY;
 // end
 
-// classes
-class Player{
-    constructor(x, y, w, h, c){
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-        this.c = c;
+function borderCol(){
+    if (player.x <= canvas.width - canvas.width){
+        player.x = canvas.width - canvas.width;
+    }
+    if (player.x + player.w >= canvas.width){
+        player.x = canvas.width - player.w
+    }
+    if (player.y <= canvas.height - canvas.height){
+        player.y = canvas.height - canvas.height;
+    }
+    if (player.y + player.h >= canvas.height){
+        player.y = canvas.height - player.h
     }
 }
-let player = new Player(100, 100, 50, 50, "black")
-
-
-class CalcDistanceX{
-    constructor(x, y){
-        this.x = x;
-        this.y = y;
-    }
-}
-let pointAx = new CalcDistanceX(0, 0)
-let pointBx = new CalcDistanceX(0, 0)
-let pointAy = new CalcDistanceX(0, 0)
-let pointBy = new CalcDistanceX(0, 0)
-
-// end of classes
-
 
 // how to use:
 // 1) create function inside your main.js.
@@ -134,6 +162,12 @@ function AllowPlayerMovement(){
     player.y += vy
     ctx.fillStyle = player.c
     ctx.fillRect(player.x, player.y, player.w, player.h)
+}
+function drawPlayer(){ // not to be used if you are already using the engine's movement controls
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = player.c
+    ctx.fillRect(player.x, player.y, player.w, player.h)
+
 }
 listen("keydown", function(e) {
     if (e.key == 'w') vy = -5;
@@ -184,20 +218,26 @@ interval(function RemoveCanvas(){
 interval(function calculateDistance(){
     if (calcDist){
         calcDist = false;
-        DistanceX = pointBx.x - pointAx.x
-        DistanceY = pointBy.y - pointAy.y
+        DistanceX = pointB.x - pointA.x
+        DistanceY = pointB.y - pointA.y
         if (DistanceX < -1){
-            DistanceX = pointAx.x - pointBx.x
+            DistanceX = pointA.x - pointB.x
         }
         if (DistanceY < -1){
-            DistanceY = pointAy.y - pointAy.y
+            DistanceY = pointA.y - pointA.y
         }
-        console.log("DistanceX From 'pointAx.x' (" + pointAx.x + ")" + " to 'pointBx.x' (" + pointBx.x + ") is: " + DistanceX + "px")
+        console.log("DistanceX From 'pointA.x' (" + pointA.x + ")" + " to 'pointBx.x' (" + pointB.x + ") is: " + DistanceX + "px")
+        console.log("===========")
+        console.log("DistanceY From 'pointA.y' (" + pointA.y + ")" + " to 'pointB.y' (" + pointB.y + ") is: " + DistanceY + "px")
     }
 })
 interval(function setBackgroundColor(){
     doc.body.style.backgroundColor = bgc   
 })
+function EngineVersion(){
+    cl('The current Engine version that you have installed is:')
+    cl('Version 1.1.0')
+}
 canvas.width = width;
 canvas.height = height;
 cl("autoEngine.js Loaded Succesfully")

@@ -124,6 +124,7 @@ let borderCollision = false;
 // private variables (not to be changed or used) 
 let DistanceX;
 let DistanceY;
+let playerMovement = false;
 // end
 
 function borderCol(){
@@ -170,16 +171,20 @@ function drawPlayer(){ // not to be used if you are already using the engine's m
 
 }
 listen("keydown", function(e) {
+    if (playerMovement){
     if (e.key == 'w') vy = -5;
     if (e.key == 's') vy = 5;
     if (e.key == 'd') vxr = 5;
     if (e.key == 'a') vxl = -5;
+    }
 })
 listen("keyup", function (e) {
+    if (playerMovement){
     if (e.key == 'w') vy = 0;
     if (e.key == 's') vy = 0;
     if (e.key == 'd') vxr = 0;
     if (e.key == 'a') vxl = 0;
+    }
 })
 // end of charactor movement
 listen("mousemove", function(e) {
@@ -238,7 +243,7 @@ function EngineVersion(){
     cl('The current Engine version that you have installed is:')
     cl('Version 1.1.0')
 }
-canvas.width = width;
-canvas.height = height;
+canvas.width = width - 30;
+canvas.height = height - 30;
 cl("autoEngine.js Loaded Succesfully")
 cl("Built by using autoEngine.js")
